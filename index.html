@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" ng-app="pizzaCream">
+<head>
+  <meta charset="UTF-8">
+  <title>Pizza Cream</title>
+  <script src="lib/angular.js"></script>
+  <script src="app.js"></script>
+  <script src="controllers/FoodController.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <!-- <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'> -->
+  <link href="css/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="container">
+    <h1>Pizza Cream</h1>
+    <button class="btn btn-success" ng-click="tab = 'pizza'">Pizza?</button>
+    <button class="btn btn-success" ng-click="tab = 'ice'">Ice Cream?</button>
+    <!-- Below is for accessing root scope -->
+    <div ng-controller="FoodCtrl">
+
+
+        <div ng-controller="PizzaCtrl" ng-show="tab === 'pizza'">
+           <ul>
+            <li ng-repeat="pizza in pizzas">
+          <form class="form-inline" role="form" ng-submit="addPizza('{{pizza.name}}')">
+              <div class="form-group">
+                <div class="input-group">
+                  <button class='btn btn-danger' ng-click="pizza.show = !pizza.show"> {{ pizza.name }} </button>
+                  <div class='checkbox' ng-show="pizza.show">
+                    <input type='checkbox' ng-model='pizzaPrice' ng-true-value="'{{pizza.prices[0]}}'"> (S) {{ pizza.prices[0] | currency }}
+                    <input type='checkbox' ng-model='pizzaPrice' ng-true-value="'{{pizza.prices[1]}}'"> (M) {{ pizza.prices[1] | currency }}
+                    <input type='checkbox' ng-model='pizzaPrice' ng-true-value="'{{pizza.prices[2]}}'"> (L) {{ pizza.prices[2] | currency }}
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </form>
+        </div>
+
+        <div ng-controller="IceCreamCtrl" ng-show="tab === 'ice'">
+          <ul>
+            <li ng-repeat="flavor in flavors">
+              {{flavor.name}}
+            </li>
+          </ul>
+        </div>
+
+        <button type='submit'>Order</button>
+    </div>
+  </div>
+</body>
+</html>

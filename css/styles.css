@@ -1,0 +1,16 @@
+
+
+
+ul {
+  list-style: none;
+  float: left;
+}
+
+table {
+  width: 100%;
+}
+
+
+.name {
+  margin-right: 40px
+}
